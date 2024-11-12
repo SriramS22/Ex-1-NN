@@ -1,7 +1,7 @@
-<H3>NAME : SRIRAM S</H3>
-<H3>REGISTER NO. : 212222240105</H3>
+<H3>ENTER YOUR NAME : Sriram S</H3>
+<H3>ENTER YOUR REGISTER NO. 212222240105</H3>
 <H3>EX. NO.1</H3>
-<H3>DATE : 07-11-2024 </H3>
+<H3>DATE : 22.08.2024</H3>
 <H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
 
 ## AIM:
@@ -37,82 +37,56 @@ STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-```
-Name : R Guruprasad
-Reg no. : 212222240033
-
-import numpy as np
-import pandas as pd
-from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import MinMaxScaler
+```Python
+import pandas as pd                                                 # Importing Libraries
 import io
-
-df=pd.read_csv('Churn_Modelling.csv')
-df
-
-x=df.iloc[:,:-1].values
-print(x)
-y=df.iloc[:,-1].values
-print(y)
-
-print(df.isnull().sum())
-
-df.duplicated().sum()
-
-df.drop(['Surname'],axis=1,inplace=True) 
-df.drop(['CustomerId','Gender','Geography'],axis=1,inplace=True)
-df
-
-df.describe()
-
-scaler=MinMaxScaler()
-df1=pd.DataFrame(scaler.fit_transform(df))
-df1
-
-x1=df1.iloc[:,:-1].values
-print(x1)
-y1=df1.iloc[:,-1].values
-print(y1)
-
-x_train,x_test,y_train,y_test=train_test_split(x1,y1,test_size=0.2)
-print(x_train)
-print(len(x_train))
-print(x_test)
-print(len(x_test))
-
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+df=pd.read_csv("Churn_Modelling.csv",index_col="RowNumber")         # Read the dataset from drive
+df.head()
 ```
+```Python
+df.isnull().sum()                                                   # Finding Missing Values
+```
+```Python                                               
+df.duplicated().sum()                                               # Check For Duplicates
+```
+```Python                                              
+df=df.drop(['Surname', 'Geography','Gender'], axis=1)               # Remove Unnecessary Columns
+scaler=StandardScaler()                                             # Normalize the dataset
+df=pd.DataFrame(scaler.fit_transform(df))
+df.head()
+```
+```Python
+X,Y=df.iloc[:,:-1].values ,df.iloc[:,-1].values                     # Split the dataset into input and output
+print('Input:\n',X,'\nOutput:\n',Y) 
+Xtrain,Xtest,Ytrain,Ytest = train_test_split(X, Y, test_size=0.2)   # Splitting the data for training & Testing
+print("Xtrain:\n" ,Xtrain, "\nXtest:\n", Xtest)                     # X Train and Test
+print("\nYtrain:\n" ,Ytrain, "\nYtest:\n", Ytest)                   # Y Train and Test
+```
+
+
 ## OUTPUT:
+### DATASET:
+![image](https://github.com/user-attachments/assets/4e75215a-6909-47e8-be89-f1b0dcf64069)
 
-### The Dataset:
-![image](https://github.com/user-attachments/assets/20d15b52-7c53-4f49-851e-d2cac3981c82)
+### NULL VALUES: 
+![image](https://github.com/user-attachments/assets/1a4ab591-3115-42e5-88c6-c2356d1175b5)
 
-### Splitting the dataset: 
-![image](https://github.com/user-attachments/assets/d7541306-08ca-429c-a03e-2a7fbf824cd8)
+### NORMALIZED DATA:
+![image](https://github.com/user-attachments/assets/27a5d162-c488-42b5-b5b9-fe563cf3062c)
+### DATA SPLITTING:
+![image](https://github.com/user-attachments/assets/e5154e4d-b3f4-444e-9d20-5a3d908c4797)
+![image](https://github.com/user-attachments/assets/6d65b734-6632-4fa7-aa91-39c6feb88e5e)
 
-### Checking for null values:
-![image](https://github.com/user-attachments/assets/892f1695-70e7-4ecb-8f8c-a9ec96ac2a87)
-
-### Checking for duplication:
-![image](https://github.com/user-attachments/assets/2075962b-c497-48d8-b405-f072a1e9c86a)
-
-### Dropping unwanted features:
-![image](https://github.com/user-attachments/assets/12abc2d9-a0b0-4897-9126-8bdb3dc0432b)
-
-### Describing the dataset:
-![image](https://github.com/user-attachments/assets/c79e4e31-71b6-493a-853b-f59b59414d57)
-
-### Scaling the values:
-![image](https://github.com/user-attachments/assets/eb9a7660-0d6d-4698-864e-bf90d144e0f6)
-
-### X and Y features:
-![image](https://github.com/user-attachments/assets/316c5ced-4649-4861-babb-bdaeebb47543)
-
-### Splitting the training and testing dataset:
-![image](https://github.com/user-attachments/assets/5349ba7e-0157-4e43-a195-d472146f9e24)
-
+### TRAIN AND TEST DATA:
+![image](https://github.com/user-attachments/assets/8716f8a6-4f08-42ea-9c6a-1b86bb38ae00)
+![image](https://github.com/user-attachments/assets/4214bcfc-f2c1-4f69-b7b0-6ead12703483)
+![image](https://github.com/user-attachments/assets/f219a314-14c7-4921-a631-df59b3c46301)
+![image](https://github.com/user-attachments/assets/025abc61-60a1-4f7d-b8ca-40210b03f7f4)
 
 ## RESULT:
-Thus, Implementation of Data Preprocessing is done in python  using a data set downloaded from Kaggle.
+Thus, Implementation of Data Preprocessing is done in python using a data set downloaded from Kaggle.
 
 
